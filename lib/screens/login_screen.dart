@@ -1,13 +1,15 @@
+import 'package:admin_app_grocery/screens/HomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 import '../constants.dart';
 import '../services/firebase_services.dart';
-import 'HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+  static const id = "login-screen";
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -17,35 +19,82 @@ class _LoginScreenState extends State<LoginScreen> {
   final Future<FirebaseApp> _initialize = Firebase.initializeApp();
   final formKey = GlobalKey<FormState>();
   final FirebaseServices _services = FirebaseServices();
-  String? username;
-  String? password;
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  // String? username;
+  // String? password;
 
-  Future<void> _login() async {
-    _services.getAdminCredentials().then((value) async {
-      for (var element in value.docs) {
-        if (element.get('username') == username &&
-            (element.get('password') == password)) {
-          UserCredential userCredentials =
-              await FirebaseAuth.instance.signInAnonymously();
-          if (userCredentials.user?.uid != null) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              ),
-            );
-            return;
-          } else {
-            showAlert("Login Failed");
-          }
-        }
-        return showAlert("Invalid Admin Credentials");
-      }
-    });
-  }
+  // Future<void> _login() async {
+  //   _services.getAdminCredentials().then((value) async {
+  //     for (var element in value.docs) {
+  //       if (element.get('username') == username &&
+  //           (element.get('password') == password)) {
+  //         UserCredential userCredentials =
+  //             await FirebaseAuth.instance.signInAnonymously();
+  //         if (userCredentials.user?.uid != null) {
+  //           showAlert("Login Successfully");
+  //           Navigator.pushReplacement(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => const HomeScreen(),
+  //             ),
+  //           );
+  //           return;
+  //         } else {
+  //           showAlert("Login Failed");
+  //         }
+  //       }
+  //       return showAlert("Invalid Admin Credentials");
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final ProgressDialog pr = ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: false, showLogs: false);
+    pr.style(
+      borderRadius: 10.0,
+      backgroundColor: Colors.white,
+      progressWidget: const CircularProgressIndicator(),
+      elevation: 10.0,
+      insetAnimCurve: Curves.easeInOut,
+      progress: 0.0,
+      maxProgress: 100.0,
+    );
+
+    _login({username, password}) async {
+      await pr.show();
+      _services.getAdminCredentials(username).then((value) async {
+        if (value.exists) {
+          if (value['username'] == username && value['password'] == password) {
+            // print(username);
+            // print(password);
+            // print(value['username']);
+            // print(value['password']);
+            try {
+              UserCredential userCredential =
+                  await FirebaseAuth.instance.signInAnonymously();
+              if (userCredential != null) {
+                await pr.hide();
+                Navigator.pushReplacementNamed(context, HomeScreen.id);
+              } else {
+                showAlert("Login Failed");
+              }
+            } catch (e) {
+              print(e.toString());
+            }
+          } else {
+            await pr.hide();
+            showAlert("Invalid User");
+          }
+        }else {
+          await pr.hide();
+          showAlert("Invalid User");
+        }
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -97,13 +146,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   TextFormField(
+                                    controller: usernameController,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Enter Username";
                                       }
-                                      setState(() {
-                                        username = value.toString();
-                                      });
+                                      // setState(() {
+                                      //   username = value.toString();
+                                      // });
                                       return null;
                                     },
                                     decoration: InputDecoration(
@@ -121,7 +171,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     height: 20,
                                   ),
                                   TextFormField(
-                                    obscureText: true,
+                                    controller: passwordController,
+                                    // obscureText: true,
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return "Enter Password";
@@ -129,9 +180,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       if (value.length < 6) {
                                         return "Enter A Strong Password";
                                       }
-                                      setState(() {
-                                        password = value.toString();
-                                      });
+                                      // setState(() {
+                                      //   password = value.toString();
+                                      // });
                                       return null;
                                     },
                                     decoration: InputDecoration(
@@ -157,7 +208,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: ElevatedButton(
                                     onPressed: () {
                                       if (formKey.currentState!.validate()) {
-                                        _login();
+                                        _login(
+                                            username: usernameController.text,
+                                            password: passwordController.text);
                                       }
                                     },
                                     child: const Text("Login"),

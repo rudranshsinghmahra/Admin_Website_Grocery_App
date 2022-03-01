@@ -1,4 +1,11 @@
+import 'package:admin_app_grocery/screens/HomeScreen.dart';
+import 'package:admin_app_grocery/screens/admin_users.dart';
+import 'package:admin_app_grocery/screens/categories_screen.dart';
 import 'package:admin_app_grocery/screens/login_screen.dart';
+import 'package:admin_app_grocery/screens/manage_banners.dart';
+import 'package:admin_app_grocery/screens/notification_screen.dart';
+import 'package:admin_app_grocery/screens/orders_screen.dart';
+import 'package:admin_app_grocery/screens/settings_screen.dart';
 import 'package:admin_app_grocery/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +30,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const SplashScreen(),
+      routes: {
+        HomeScreen.id:(context)=>const HomeScreen(),
+        SplashScreen.id:(context)=>const SplashScreen(),
+        LoginScreen.id:(context)=>const LoginScreen(),
+        BannerScreen.id:(context)=>const BannerScreen(),
+        CategoriesScreen.id:(context)=>const CategoriesScreen(),
+        OrderScreen.id:(context)=>const OrderScreen(),
+        NotificationScreen.id:(context)=>const NotificationScreen(),
+        AdminUsers.id:(context)=>const AdminUsers(),
+        SettingScreen.id:(context)=>const SettingScreen(),
+      },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.deepPurple),
       title: "Grocery App Admin Dashboard",

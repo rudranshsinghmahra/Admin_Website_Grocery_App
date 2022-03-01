@@ -1,13 +1,20 @@
-import 'package:admin_app_grocery/services/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-  static const id = "home-screen";
+import '../services/sidebar.dart';
+
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({Key? key}) : super(key: key);
+  static const id = "settings-screen";
+
+  @override
+  _SettingScreenState createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
+  final SidebarWidget _sidebarWidget = SidebarWidget();
   @override
   Widget build(BuildContext context) {
-    SidebarWidget _sidebarWidget = SidebarWidget();
     return AdminScaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -20,13 +27,13 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.SideBarMenus(context, HomeScreen.id),
+      sideBar: _sidebarWidget.SideBarMenus(context, SettingScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.all(10),
           child: const Text(
-            'Dashboard',
+            'Setting Screen',
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 36,
