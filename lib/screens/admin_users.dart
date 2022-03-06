@@ -27,7 +27,7 @@ class _AdminUsersState extends State<AdminUsers> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.SideBarMenus(context, AdminUsers.id),
+      sideBar: _sidebarWidget.sideBarMenus(context, AdminUsers.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

@@ -17,7 +17,8 @@ void main() async {
       apiKey: "AIzaSyBXPVjFC8IRVeLDN6B_E2Y8RcdQpc1PGdg", // Your apiKey
       appId: "1:147156304764:web:96b516fa253cfea5da9af9", // Your appId
       messagingSenderId: "147156304764", // Your messagingSenderId
-      projectId: "grocery-application-3329d", // Your projectId
+      projectId: "grocery-application-3329d", // Your
+      storageBucket: "grocery-application-3329d.appspot.com"// projectId
     ),
   );
   runApp(const MyApp());

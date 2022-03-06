@@ -27,7 +27,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.SideBarMenus(context, NotificationScreen.id),
+      sideBar: _sidebarWidget.sideBarMenus(context, NotificationScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

@@ -11,7 +11,7 @@ import '../screens/orders_screen.dart';
 import '../screens/settings_screen.dart';
 
 class SidebarWidget {
-  SideBarMenus(context,selectedRoute) {
+  sideBarMenus(context,selectedRoute) {
     return SideBar(
       activeBackgroundColor: Colors.black38,
       activeIconColor: Colors.white,

@@ -27,7 +27,7 @@ class _OrderScreenState extends State<OrderScreen> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.SideBarMenus(context, OrderScreen.id),
+      sideBar: _sidebarWidget.sideBarMenus(context, OrderScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

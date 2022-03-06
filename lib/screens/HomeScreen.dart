@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.SideBarMenus(context, HomeScreen.id),
+      sideBar: _sidebarWidget.sideBarMenus(context, HomeScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

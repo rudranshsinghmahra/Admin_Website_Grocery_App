@@ -27,7 +27,7 @@ class _SettingScreenState extends State<SettingScreen> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.SideBarMenus(context, SettingScreen.id),
+      sideBar: _sidebarWidget.sideBarMenus(context, SettingScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,

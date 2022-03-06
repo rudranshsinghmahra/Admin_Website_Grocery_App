@@ -27,7 +27,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.SideBarMenus(context, CategoriesScreen.id),
+      sideBar: _sidebarWidget.sideBarMenus(context, CategoriesScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
