@@ -1,24 +1,23 @@
-import 'package:admin_app_grocery/widgets/categories/categories_upload_widget.dart';
-import 'package:admin_app_grocery/widgets/categories/category_list_widget.dart';
+import 'package:admin_app_grocery/widgets/vendors_datatable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
 
 import '../services/sidebar.dart';
 
-class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({Key? key}) : super(key: key);
-  static const id = "categories-screen";
+class VendorScreen extends StatefulWidget {
+  const VendorScreen({Key? key}) : super(key: key);
+  static const id = "vendors-screen";
 
   @override
-  _CategoriesScreenState createState() => _CategoriesScreenState();
+  State<VendorScreen> createState() => _VendorScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
-  final SidebarWidget _sidebarWidget = SidebarWidget();
+class _VendorScreenState extends State<VendorScreen> {
   @override
   Widget build(BuildContext context) {
+    final SidebarWidget _sidebarWidget = SidebarWidget();
     return AdminScaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white,
@@ -29,7 +28,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.sideBarMenus(context, CategoriesScreen.id),
+      sideBar: _sidebarWidget.sideBarMenus(context, VendorScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
@@ -44,11 +43,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   fontSize: 36,
                 ),
               ),
-              Text("Add New Categories and Sub Categories"),
+              Text("Manage All Banner Activities"),
               Divider(thickness: 5,),
-              CategoriesUploadWidget(),
+              VendorDataTable(),
               Divider(thickness: 5,),
-              CategoryListWidget(),
             ],
           ),
         ),

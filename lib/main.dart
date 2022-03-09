@@ -7,6 +7,7 @@ import 'package:admin_app_grocery/screens/notification_screen.dart';
 import 'package:admin_app_grocery/screens/orders_screen.dart';
 import 'package:admin_app_grocery/screens/settings_screen.dart';
 import 'package:admin_app_grocery/screens/splash_screen.dart';
+import 'package:admin_app_grocery/screens/vendors_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         NotificationScreen.id:(context)=>const NotificationScreen(),
         AdminUsers.id:(context)=>const AdminUsers(),
         SettingScreen.id:(context)=>const SettingScreen(),
+        VendorScreen.id:(context)=>const VendorScreen(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.deepPurple),

@@ -1,4 +1,5 @@
 import 'package:admin_app_grocery/screens/HomeScreen.dart';
+import 'package:admin_app_grocery/screens/vendors_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
@@ -29,11 +30,15 @@ class SidebarWidget {
           icon: Icons.photo,
         ),
         MenuItem(
+          title: 'Vendors',
+          route: VendorScreen.id,
+          icon: CupertinoIcons.group_solid,
+        ),
+        MenuItem(
           title: 'Categories',
           route: CategoriesScreen.id,
           icon: Icons.category,
-        ),
-        MenuItem(
+        ),MenuItem(
           title: 'Orders',
           route: OrderScreen.id,
           icon: CupertinoIcons.cart_fill,
