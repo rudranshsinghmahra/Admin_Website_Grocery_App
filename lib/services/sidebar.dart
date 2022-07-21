@@ -1,4 +1,5 @@
-import 'package:admin_app_grocery/screens/HomeScreen.dart';
+import 'package:admin_app_grocery/screens/home_screen.dart';
+import 'package:admin_app_grocery/screens/deliveryBoy_screen.dart';
 import 'package:admin_app_grocery/screens/vendors_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,48 +13,54 @@ import '../screens/orders_screen.dart';
 import '../screens/settings_screen.dart';
 
 class SidebarWidget {
-  sideBarMenus(context,selectedRoute) {
+  sideBarMenus(context, selectedRoute) {
     return SideBar(
       activeBackgroundColor: Colors.black38,
       activeIconColor: Colors.white,
       activeTextStyle: const TextStyle(color: Colors.white),
       backgroundColor: Colors.black12,
       items: const [
-        MenuItem(
+        AdminMenuItem(
           title: 'Dashboard',
           route: HomeScreen.id,
           icon: Icons.dashboard,
         ),
-        MenuItem(
+        AdminMenuItem(
           title: 'Banners',
           route: BannerScreen.id,
           icon: Icons.photo,
         ),
-        MenuItem(
+        AdminMenuItem(
           title: 'Vendors',
           route: VendorScreen.id,
           icon: CupertinoIcons.group_solid,
         ),
-        MenuItem(
+        AdminMenuItem(
+          title: 'Delivery Boy',
+          route: DeliveryBoyScreen.id,
+          icon: Icons.delivery_dining,
+        ),
+        AdminMenuItem(
           title: 'Categories',
           route: CategoriesScreen.id,
           icon: Icons.category,
-        ),MenuItem(
+        ),
+        AdminMenuItem(
           title: 'Orders',
           route: OrderScreen.id,
           icon: CupertinoIcons.cart_fill,
         ),
-        MenuItem(
+        AdminMenuItem(
           title: 'Send Notifications',
           route: NotificationScreen.id,
           icon: Icons.dashboard,
         ),
-        MenuItem(
+        AdminMenuItem(
           title: 'Admin Users',
           route: AdminUsers.id,
           icon: Icons.person_rounded,
         ),
-        MenuItem(
+        AdminMenuItem(
           title: 'Settings',
           route: SettingScreen.id,
           icon: Icons.settings,

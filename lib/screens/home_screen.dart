@@ -7,7 +7,7 @@ class HomeScreen extends StatelessWidget {
   static const id = "home-screen";
   @override
   Widget build(BuildContext context) {
-    SidebarWidget _sidebarWidget = SidebarWidget();
+    SidebarWidget sidebarWidget = SidebarWidget();
     return AdminScaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sidebarWidget.sideBarMenus(context, HomeScreen.id),
+      sideBar: sidebarWidget.sideBarMenus(context, HomeScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
